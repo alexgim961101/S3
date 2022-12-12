@@ -1,0 +1,35 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.6'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	implementation ('org.projectlombok:lombok')
+	compileOnly ('org.projectlombok:lombok:1.18.16')
+	annotationProcessor ('org.projectlombok:lombok:1.18.16')
+
+
+	runtimeOnly ('mysql:mysql-connector-java') //mysql8
+	//runtimeOnly 'mysql:mysql-connector-java:5.1.47' //mysql5
+	implementation ('org.springframework.boot:spring-boot-starter-jdbc')
+	implementation('org.springframework.boot:spring-boot-starter-data-jpa') //mysql 5버전의 경우 삭제.
+
+	implementation group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: '1.12.261'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
